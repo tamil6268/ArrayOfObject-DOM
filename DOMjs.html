@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <link rel="stylesheet" href="">
+    <!-- <link rel="stylesheet" href=""> -->
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: blanchedalmond;
+            /* background:linear-gradient(90deg,transparent,lightgreen,skyblue,greenyellow,lightblue,tomato,lightgreen,skyblue,greenyellow,lightblue,tomato); */
+        }
+        #text{
+            color:goldenrod;
+            text-shadow: 5px 9px 5px rosybrown;
+            text-align: center;
+        }
+        .red h1{
+            color:red;
+            text-shadow: 5px 9px 5px rosybrown;
+            text-align: center;
+        }
+        .text:active{
+            color:blue;
+        }
+        .box{
+           font-size: 35px; 
+           color:mediumpurple;
+           text-shadow: 5px 9px 5px rosybrown;
+           text-align: center;
+        }
+        #changeword{
+            text-align: center;
+            margin-top: 10px;
+            font-size: 39px;
+            color: teal;
+        }
+        .parent{
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content:center;/*this is for row*/
+            align-items: center;/*this is for column*/
+            margin-bottom: 2%;
+        }
+        .parent:focus{
+            flex-direction: column;
+        }
+        .child1,.child2,.child3{
+            width: 60px;
+            height: 60px;
+            border: 2px solid black;
+            margin: 4px;
+        }
+        .child1{
+            background-color: lightgreen;
+        }
+        .child2{
+            background-color: lightseagreen;
+        }
+        .child3{
+            background-color: lightsalmon;
+        }
+        .child1:hover{
+            background-color: green;
+        }
+        .child2:hover{
+            background-color: seagreen;
+        }
+        .child3:hover{
+            background-color: red;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            padding: 5px;
+            position:absolute;
+            bottom: 55%;
+            right: 55%;
+            color: white;
+            background-color:blue;
+            border:none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:nth-child(2){
+            width: 100px;
+            height: 30px;
+            padding: 5px;
+            position:absolute;
+            left: 56%;
+            color: white;
+            background-color:blue;
+            border:none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        @media screen and (min-width:200px)and (max-width:800px) {
+            button{
+                width: 70px;
+                position:absolute;
+                bottom: 41%;
+                right: 65%;
+            }
+            button:nth-child(2){
+                width: 70px;
+                position:absolute;
+                left: 69%;
+            }
+        }
+        button:hover{
+            background-color: green;
+            width: 120px;
+            height: 35px;
+            padding: 5px;
+        }
+        .align{
+            font-weight: bold;
+            font-size: 20px;
+            position: absolute;
+            top: 390px;
+            left: 735px;
+            z-index: +5;
+        }
+        .newColor h1{
+            text-align: center;
+        }
+        .task{
+           text-align:center;
+           display: flex;
+           flex-direction: column;
+           margin-top: 10px;
+        }
+        .btn{
+            width: 130px;
+            height: 40px;
+            background-color: thistle;
+            border: 2px solid gray;
+            text-align: center;
+            align-content: center;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 10px;
+            transform: translateX(620px);
+            margin-top: 20px;
+        }
+        .btn:hover{
+            opacity: 0.8;
+            color: black;
+        }
+        .content{
+            font-size: 30px;
+            margin-top: 25px;
+        }
+        .clock{
+            width: 300px;
+            height: 80px;
+            background-color: lightgreen;
+            border: 3px solid green;
+            transform: translateX(535px);
+            margin-top: 20px;
+        }
+        .time{
+            font-size: 35px;
+            font-weight: bolder;
+            text-align: center;
+            padding-top:15px;
+            text-shadow: 1px 10px 10px green;
+        }
+        #position{
+            margin-top: 20px;
+            transform: translateX(590px);
+            font-size: large;
+        }
+        #position button{
+            position: absolute;
+            left: 52px;
+            top: 30px;
+        }
+        @media screen and (min-width:200px)and (max-width:800px){
+            .btn{
+                transform: translateX(85px);
+            }
+            .clock{
+                width: 240px;
+                transform: translateX(30px);
+            }
+            #position{
+                transform: translateX(60px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 id="text">Welcome To My Website</h2>
+    </div>
+    <div class="red">
+        <h1 ondblclick="func()"onclick="func1()">You Can See DOM Things</h1>
+    </div>
+    <div>
+        <h3 onclick="Box()" class="box">Class Name 'box'</h3>
+    </div>
+    <div>
+        <h2 id="changeword">Hello</h2>
+    </div>    
+
+    <div class="parent">
+        <div class="child1"></div>
+        <div class="child2"></div>
+        <div class="child3"></div>
+        <div class="button">
+            <button onclick="changedirectionr()">Row</button>
+            <button class="col"onclick="changedirectionc()">Column</button>
+        </div>
+    </div>
+
+    <div onclick="add()" class="newColor">
+        <h1>Hello</h1>
+    </div>
+
+    <div class="task">
+        <div class="content">Hello World</div>
+        <div class="btn" onclick="replace()">Replace Text</div>
+    </div>
+     
+    <div class="clock">
+        <div class="time">00:00:00 AM</div>
+    </div>
+
+    <div id="position">
+        Select Year:<select name="" class="collections">
+            <option>2018 - 2019</option>
+            <option>2019 - 2020</option>
+            <option>2020 - 2021</option>
+            <option>2021 - 2022</option>
+            <option>2022 - 2023</option>
+            <option>2023 - 2024</option>
+            <option>2024 - 2025</option>
+            <option>2025 - 2026</option>
+        </select>
+        <button onclick="btn()">OK</button>
+    </div>
+
+
+    <script type="text/javascript">
+        //1-Q
+        const one=document.getElementById('text');
+        one.addEventListener('click',function(){
+            alert(one.innerText);
+        });
+
+        //2.Q
+        const two=document.getElementsByTagName('h1');
+        two.classname="text";
+        function func(){
+            two[0].style.color="green";
+        }
+        function func1(){
+            two[0].style.color="red";
+        }
+
+        //3-Q
+        const three=document.getElementsByClassName('box');
+        function Box(){
+            alert(three[0].innerHTML="Am The Class Name of 'box'");
+            three[0].style.color="purple"
+        };
+        
+        //4-Q
+        const four=document.getElementById('changeword');
+        four.addEventListener('mouseenter',changeword);
+        function changeword(){
+            four.style.color="blue"
+            four.style.fontSize="50px"
+            four.innerText="Hello World";
+        }//for enter
+
+        four.addEventListener('mouseleave',changeword1);
+        function changeword1(){
+            four.style.color="teal"
+            four.style.fontSize="35px"
+            four.innerText="Hello";
+        }//for leave
+
+        //5-Q
+        const row=document.querySelector('.parent');
+        const column=document.getElementsByClassName('col');
+        
+        column[0].addEventListener('click',changedirectionc);
+
+        function changedirectionr(){
+            row.style.flexDirection='row';
+        }
+        function changedirectionc(){
+            row.style.flexDirection='column';
+        }
+        
+        //6-Q
+         //diff between window and document-----> Window is parent of decuments
+
+         //7-Q
+        const red=document.getElementsByTagName('h1');
+            red[1].setAttribute("id","heading");
+            red[1].innerText;
+            function add(){
+                red[1].style.color="red";
+            }
+            
+        //8-Q
+        const htmlcontent=document.querySelector('.content');
+        function replace(){
+            htmlcontent.innerText="Welcome To Elevation Acadamy";
+            htmlcontent.style.color="tomato";
+        } 
+
+        //9-Q
+        function clock(){
+            const time=new Date();
+            let hrs=time.getHours();
+            let min=time.getMinutes();
+            let sec=time.getSeconds();
+            let text="AM";
+            if(hrs>12){
+                hrs=hrs%12;
+                text="PM";
+            }
+            else if(hrs==0){
+                text="AM";
+            }
+            hrs=hrs<10?"0"+hrs:hrs;
+            min=min<10?"0"+min:min;
+            sec=sec<10?"0"+sec:sec;
+
+            const timer=document.getElementsByClassName('time');
+            timer[0].innerText=`${hrs}:${min}:${sec} ${text}`;
+        }
+        clock()
+        setInterval(()=>{
+            clock();
+        },1000)
+
+        //10-Q
+        function btn(){
+            const variable=document.getElementsByClassName('collections');
+            const value=variable[0].value;
+            alert(value)
+        }
+    </script>
+</body>
+</html>
